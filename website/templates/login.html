@@ -1,7 +1,41 @@
 {% extends "basetemp.html" %}
 <title>{% block title %} Login Page {% endblock %}</title>
 <h1>{% block header %} Login Page{%endblock%}</h1>
-{% block content %}
-{{ ligma }} {{ what + " baka" }}
-<h1>Baba boey</h1>
-{% endblock %}
+
+{% block content%} 
+<h1 style="color:wheat;"> Log in </h1>
+<hr style="border-color:white;">
+<div style="background-color:rgba(255,255,255,120);padding: 12px;border-radius:12px;">
+<form method="POST">
+    <h3 align="center"> Log in </h3>
+    <div class="form-group">
+        <label for="email"> Email Address </label>
+        <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        name="email" 
+        placeholder="Enter email"
+        />
+        
+    </div>
+
+    <div class="form-group">
+        <label for="password"> Password </label>
+        <input 
+        type="password" 
+        class="form-control" 
+        id="password" 
+        name="password" 
+        placeholder="Enter password"
+        />
+        
+    </div>
+
+    <br/>
+    <div style="text-align: center;">
+        <button  type="submit" class="btn btn-primary"> Login </button>
+    </div>
+</div>
+</form>
+{%endblock%}
