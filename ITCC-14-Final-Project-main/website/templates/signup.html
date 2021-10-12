@@ -1,0 +1,64 @@
+{% extends "basetemp.html" %}
+<title>{% block title%}Sign up Page{% endblock %}</title>
+<h1>{% block header %} Sign up Page{% endblock %}</h1>
+{% block content%} 
+<h1 style="color:wheat; text-align: center;"> Sign up Form</h1>
+<hr style="border-color:white;">
+<div style="background-color:rgba(255,255,255,120);padding: 12px;border-radius:12px;">
+<form method="POST">
+    <h3 align="center"> Sign up </h3>
+    <div class="form-group">
+        <label for="email"> Email Address </label>
+        <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        name="email" 
+        placeholder="Enter email"
+        />
+        
+    </div>
+
+    <div class="form-group">
+        <label for="username"> Username </label>
+        <input 
+        type="text" 
+        class="form-control" 
+        id="username" 
+        name="username" 
+        placeholder="Enter username"
+        />
+        
+    </div>
+
+    <div class="form-group">
+        <label for="password1"> Password </label>
+        <input 
+        type="password" 
+        class="form-control" 
+        id="password1" 
+        name="password1" 
+        placeholder="Enter password"
+        />
+        
+    </div>
+
+    <div class="form-group">
+        <label for="password2"> Password </label>
+        <input 
+        type="password" 
+        class="form-control" 
+        id="password2" 
+        name="password2" 
+        placeholder="Confirm password"
+        />
+        
+    </div>
+
+    <br/>
+    <div style="text-align: center;">
+        <button  type="submit" class="btn btn-primary"> Submit </button>
+    </div>
+</div>
+</form>
+{%endblock%}

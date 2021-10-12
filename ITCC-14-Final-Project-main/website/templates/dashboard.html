@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <style>
+        /* Style The Dropdown Button */
+        .dropbtn {
+        background: none;
+          color: black;
+          padding: 7px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        /* Links inside the dropdown */
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1}
+        
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        
+       
+        </style>
+
+    <title>{% block title %}Dashboard{% endblock %}</title>
+  </head>
+  <body style="background-color:rgba(84,44,111,255);">
+    {%if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning" style="padding-bottom: 2px;">
+        <img src="static/Bread N' Coffee Logo.png" alt="logo" href="/" style="width:110px;height:100px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+            <div class="dropdown" style="padding-left: 1000px;">
+                <button class="dropbtn">Account</button>
+                <div class="dropdown-content">
+                  <a href="#">Update Profile</a>
+                  <a href="/dashboard">Dashboard</a>
+                  <a id=cart href="/cart"style="font-color:black;">{{current_user.username }}'s Cart <span class="sr-only">(current)</span></a>
+                  <a href="#">Notifications</a>
+                  <a href="#">Settings</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id=logout href="/logout">Logout</a>
+            </li>
+            {%else%}
+            <li class="nav-item">
+                <a class="nav-link" id=login href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="signup" href="/signup">Sign Up</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        {%endif%}
+      </nav>
+        <hr style="border: 1px solid violet;">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+            messages %} {% for category, message in messages %} {% if category ==
+            'error' %}
+            <div class="alert alert-danger alter-dismissable fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% else %}
+            <div class="alert alert-success alter-dismissable fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endif %} {% endfor %} {% endif %} {% endwith %}
+            <h1 style="color:wheat; text-align: center;"> Menu </h1>  
+<hr style="border-color:white;">
+<div class="container">
+<div style="background-color:rgba(255,255,255,120);padding: 12px;border-radius:12px;">
+<br>
+<br>
+<div class="container marketing">
+    <hr style="border: 5px solid yellow; width: 60%;">
+    <h2 class="featurette-heading" style="padding-left: 430px;">Coffee Menu</h2>
+    <form action="" method="POST"> 
+    <hr style="border: 5px solid yellow; width: 50%;">
+    <div class="row">
+      
+        <div class="col-sm-4">
+            <br>
+            <br>
+            <h2 style="text-align: center;">Brewed</h2>
+            <button name="orderbutton" value="Cappuchino" type="submit" style="margin-left:100px;"><svg  class="bd-placeholder-img rounded-circle" id="cappucino" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777"></rect>
+                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                <image xlink:href="static/cappuccino.jpeg"  width="110%" height="110%" x="0" y="-6" />
+            </svg></button>
+            <p style="padding-left:125px; font-family: Verdana;">Cappuccino</p>
+            <!-- <a href="#"style="padding-left:100px;"><svg class="bd-placeholder-img rounded-circle"id="espresso" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777"></rect>
+                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                <image xlink:href="static/espresso_macchiato.jpg" width="110%" height="110%" x="0" y="-6" />
+            </svg></a>
+            <p style="padding-left:100px; font-family: Verdana;">Espresso Macchiato</p>
+            <a href="#"style="padding-left:100px;"><svg class="bd-placeholder-img rounded-circle" id="cafe misto" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777"></rect>
+                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                <image xlink:href="static/Caffè Misto.jfif" width="110%" height="110%" x="0" y="-6" />
+            </svg></a>
+            <p style="padding-left:125px; font-family: Verdana;">Caffè Misto</p>
+            <a href="#" style="padding-left:100px;"><svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777"></rect>
+                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                <image xlink:href="static/B-Coffee.jpg" id="black" width="110%" height="110%" x="0" y="-6" />
+            </svg></a>
+            <p style="padding-left:100px; font-family: Verdana;">Brewed Black Coffee</p> -->
+
+        </div><!-- /.col-sm-4 -->
+        <div class="col-sm-4">
+            <br>
+            <br>
+            <h2 style="text-align: center;">Iced Coffee</h2>
+            <button name="orderbutton" value="Vanilla Bean Iced Coffee" type="submit" style="margin-left:80px;"><svg class="bd-placeholder-img rounded-circle" id="vanilla" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777"></rect>
+                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                <image xlink:href="static/Vanilla Bean Iced Coffee.jfif" width="110%" height="110%" x="-13" y="-7" />
+            </svg></button>
+            <p style="padding-left:60px; font-family: Verdana;">Vanilla Bean Iced Coffee</p>
+
+            <!-- <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle" id="caramel" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+               <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777"></rect>
+                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                <image xlink:href="static/Caramel Iced Coffee.jfif" width="110%" height="110%" x="-10" y="-7" />
+            </svg></a>
+            <p style="padding-left:70px; font-family: Verdana;">Caramel Iced Coffee</p>
+            <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle" id="choco" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/Chocolate Iced Coffee.jfif" width="110%" height="110%" x="0" y="-7" />
+             </svg></a>
+             <p style="padding-left:70px; font-family: Verdana;">Chocolate Iced Coffee</p>
+             <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle" id="blueberry-iced" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/Blueberry Iced Coffee.jfif" width="110%" height="110%" x="-5" y="-7" />
+             </svg></a>
+             <p  style="padding-left:70px; font-family: Verdana;">Blueberry Iced Coffee</p>
+             <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle" id="raspberry-iced" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/Raspberry Iced Coffee.jpg" width="110%" height="120%" x="-5" y="-7" />
+             </svg></a>
+             <p style="padding-left:70px; font-family: Verdana;">Raspberry Iced Coffee</p>
+             <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle"  id="hazelnut-iced" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/Hazelnut Iced Coffee.jpg" width="110%" height="110%" x="-5" y="-7" />
+             </svg></a>
+             <p style="padding-left:70px; font-family: Verdana;">Hazelnut Iced Coffee</p> -->
+
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+            <br>
+            <br>
+            <h2 style="padding-left:50px;">Tea Latte</h2>
+            <button name="orderbutton" value="Hibiscus Rose Latte" type="submit" style="margin-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="hibiscus-latte" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/HibiscusRoseLatte.jpg" width="110%" height="105%" x="-5" y="-7" />
+             </svg></button>
+             <p style="padding-left:50px; font-family: Verdana;">Hibiscus Rose Latte</p>
+
+             <!-- <a href="#"style="padding-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="fog latte"width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/Fog Tea Latte.jfif" width="110%" height="105%" x="-5" y="-5" />
+             </svg></a>
+             <p style="padding-left:50px;font-family: Verdana;">Fog Tea Latte</p>
+             <a href="#" style="padding-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="chai-tea" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/Chai-Tea-Latte.jpg" width="110%" height="105%" x="-5" y="-7" />
+             </svg></a>
+             <p style="padding-left:50px;">Chai Tea Latte</p>
+             <a href="#"style="padding-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="green-tea" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/green-tea-latte.jfif" width="110%" height="105%" x="-5" y="-7" />
+             </svg></a>
+             <p style="padding-left:50px;font-family: Verdana;">Green Tea Latte</p> 
+             <a href="#"style="padding-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="rosehip-tea" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                 <rect width="100%" height="100%" fill="#777"></rect>
+                 <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                 <image xlink:href="static/rosechip-chamomile-tea-latte.jpg" width="110%" height="105%" x="-5" y="-7" />
+             </svg></a>
+             <br>
+             <p style="padding-left:10px;font-family: Verdana;">Rosehip Chamomile Tea Latte</p> -->
+            </form>
+        </div>
+        <br>
+        <br>
+        <hr style="border: 5px solid yellow; width: 60%;">
+        <br>
+        <br>
+        <div class="container marketing">
+            <h2 class="featurette-heading" style="padding-left: 450px;">Bread Menu</h2>
+        <hr style="border: 5px solid yellow; width: 50%;">
+        <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <br>
+                    <br>
+                    <h2 style="padding-left:100px;">Croissant</h2>
+                    <button name="orderbutton" value="Chocolate Almond Croissant Bread " type="image" style="margin-left: 100px;"><svg class="bd-placeholder-img rounded-circle"  id="choco-almond" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/Chocolate-Almond-Croissant-Bread.png" width="100%" height="110%" x="0" y="-7" />
+                    </svg></button>
+                    <p  style="padding-left:40px; font-family: Verdana;">Chocolate Almond Croissant Bread</p>
+
+                    <!-- <a href="#"style="padding-left:100px;"><svg class="bd-placeholder-img rounded-circle"  id="caramel-croissant" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/Caramel-croissant-bread-pudding.jpg" width="100%" height="110%" x="0" y="-7" />
+                    </svg></a>
+                    <p  style="padding-left:50px; font-family: Verdana;">Caramel Croissant Bread Pudding</p>
+                    <a href="#"style="padding-left:100px;"><svg class="bd-placeholder-img rounded-circle"  id="rasp-croissant" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/raspberry-croissant-bread.png" width="100%" height="110%" x="-5" y="-7" />
+                    </svg></a>
+                    <p style="padding-left:60px; font-family: Verdana;">Raspberry Croissant Bread</p> -->
+
+                </div><!-- /.col-sm-4 -->
+                <div class="col-sm-4">
+                    <br>
+                    <br>
+                    <h2 style="padding-left:80px;">Baguette</h2>
+                    <button name="orderbutton" value="Italian Baguette" type="submit" style="margin-left:80px;"><svg class="bd-placeholder-img rounded-circle"  id="italian-b" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/baguette.png" width="100%" height="110%" x="0" y="-7" />
+                    </svg></button>
+                    <p  style="padding-left:80px; font-family: Verdana;">Italian Baguette</p>
+
+                    <!-- <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle"  id="sourdough-b" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/Sourdough-baguette.jpg" width="100%" height="110%" x="0" y="-7" />
+                    </svg></a>
+                    <p  style="padding-left:70px; font-family: Verdana;">Sourdough Baguette</p>
+                    <a href="#"style="padding-left:80px;"><svg class="bd-placeholder-img rounded-circle"  id="white-b" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/White-baguette.jfif" width="100%" height="110%" x="0" y="-7" />
+                    </svg></a>
+                    <p  style="padding-left:100px; font-family: Verdana;">White Baguette</p> -->
+
+                    <br>
+                </div><!-- /.col-lg-4 -->
+    
+                <div class="col-sm-4">
+                    <br>
+                    <br>
+                    <h2 style="padding-left:50px;">Brioche</h2>
+                    <button name="orderbutton" value="Cinnamon Brioche" type="submit" style="margin-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="cinnamon-bri" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/cinnamon brioche.jpg" width="100%" height="110%" x="0" y="-7" />
+                    </svg></button>
+                    <p  style="padding-left:50px; font-family: Verdana;">Cinnamon Brioche</p>
+<!--                     
+                    <a href="#"style="padding-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="french-bri" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/brioche.png" width="100%" height="110%" x="0" y="-7" />
+                    </svg></a>
+                    <p  style="padding-left:70px; font-family: Verdana;">French Brioche</p>
+                    <a href="#"style="padding-left:50px;"><svg class="bd-placeholder-img rounded-circle"  id="brown-butter-bri" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                        <image xlink:href="static/Browned-butter-brioche.jpg" width="100%" height="110%" x="0" y="-7" />
+                    </svg></a>
+                    <p  style="padding-left:30px; font-family: Verdana;">Browned Butter brioche</p> -->
+
+                    <br> 
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,107 @@
+{% extends "basetemp.html" %}<title>{% block title %} Contact {% endblock %}</title>
+{% block content%} 
+<style>
+    p{
+        text-align: center;
+        font-size: 20px;
+        font-family: Verdana;
+        color: bisque;
+    }
+    content .content {
+    padding-top: 0;
+}
+    content {
+    width: 75% !important;
+    margin: 6rem auto;
+    max-width: none !important;
+    }
+    form {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+label, .label {
+    width: 100%;
+    display: block;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+label, .label {
+    width: 100%;
+    display: block;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+</style>
+<h1 style="color:wheat; text-align: center;">{% block header %} Contact Us! {% endblock %}</h1>
+<hr style="border-color:white;">
+<p>Friends &amp; How are you today? Are you feeling good?&nbsp;</p>
+<p>Send us your address and we will keep you informed.</p>
+<p>&nbsp;You can also reach us by phone at <a href="#">+639753331361</a>.</p>
+<div class="content container-sm">
+		
+    <div class ="container"  style="background-color:rgba(255,255,255,120);padding: 12px;border-radius:12px;">    
+		
+	<div data-bb-track="form" data-bb-track-on="submit" data-bb-track-category="Forms" data-bb-track-action="Submit" data-bb-track-label="Contact" aria-hidden="true"></div>
+    <div class="form-header">    
+      </div>
+        <div class="form-ui">
+    <label for="450297">
+    <i class="error-label"></i>
+    <span class="input-label">Name</span>
+    
+        <input id="450297" class="form-control" type="text" name="450297" placeholder="Name" required="" aria-describedby="450297-error">
+    
+</label>
+
+     
+    
+<label for="450298">
+    <i class="error-label"></i>
+    <span class="input-label">Email</span>
+    
+        <input id="450298" class="form-control" type="email" name="450298" placeholder="Email" required="" autocomplete="email" aria-describedby="450298-error">
+    
+</label>
+   
+<label for="450299">
+    <i class="error-label"></i>
+    <span class="input-label">Phone Number</span>
+    
+        <input id="450299" class="form-control" type="text" name="450299" placeholder="Phone Number" required="" data-input-validator="phone" autocomplete="tel" aria-describedby="450299-error">
+    
+</label>
+        
+<label for="450300">
+    
+    <span class="input-label">What are you getting in touch about? <span class="input-label-optional">- Optional</span></span>
+    
+            <div class="form-control-group has-icon-right">
+                <select id="450300" class="form-control unselected" name="450300" aria-describedby="450300-error">
+                    <option value="" selected="" disabled="">What are you getting in touch about?</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Press Inquiry">Press Inquiry</option>
+                        <option value="Wholesale Inquiries">Wholesale Inquiries</option>
+                </select>
+                
+    <span class="form-control-group--icon is-positioned-right" aria-hidden="true">
+        
+        
+    </span>
+
+            </div>
+        
+</label>
+
+<label for="450301">
+    <i class="error-label"></i>
+    <span class="input-label">Your Message</span>
+    
+        <textarea id="450301" class="form-control" name="450301" placeholder="Your Message" required="" aria-describedby="450301-error"></textarea>
+    
+</label>
+</div>
+<div style="text-align: right;">
+    <button  type="submit" class="btn btn-primary" style="width: 150px;"> Submit </button>
+</div>
+
+{%endblock%}
